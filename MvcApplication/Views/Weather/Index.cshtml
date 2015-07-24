@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Weather";
+}
+
+@section featured{
+    <section class="featured">
+        <div class="content-wrapper">
+            <input name="address" placeholder="Enter Address" type="text" />
+            <input type="submit"/>
+            <hgroup class="title">
+                <h2>Weather Information for Edmond, Oklahoma</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<h3>Right Now: @ViewBag.Temperature</h3>
+<br />
+<p>Feels Like: @ViewBag.ApparentTemperature</p>
+<p>@ViewBag.Summary</p>
+<p>Cloud Cover: @ViewBag.CloudCover</p>
+<p>Dew Point: @ViewBag.DewPoint</p>
+<p>Humidity: @ViewBag.Humidity</p>
+<p>Wind Speed: @ViewBag.WindSpeed</p>
+<p>Wind Direction: @ViewBag.WindBearing</p>
+<p>Visibility: @ViewBag.Visibility</p>
+<p>Pressure: @ViewBag.Pressure</p>

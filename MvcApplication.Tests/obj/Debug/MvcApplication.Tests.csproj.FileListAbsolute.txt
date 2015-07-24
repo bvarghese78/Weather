@@ -1,0 +1,1 @@
+c:\users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\obj\Debug\MvcApplication.Tests.csprojResolveAssemblyReference.cache
