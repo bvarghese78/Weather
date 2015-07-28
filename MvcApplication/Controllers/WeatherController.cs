@@ -19,7 +19,7 @@ namespace MvcApplication.Controllers
         {
             double lat;
             double lon;
-            string address = "3941 NW 122nd Street, Oklahoma City, OK 73120";
+            string address = "3941 NW 122nd Street Oklahoma City OK 73120";
             GetGeocode(address, out lat, out lon);
 
             WeatherModel weather = GetForecast((float)lat, (float)lon);
@@ -38,8 +38,13 @@ namespace MvcApplication.Controllers
 
         public void BuildView(WeatherModel weather)
         {
+            // finds the wind direction.
+            var windDirection = (weather.currentWeather.windBearing * 2) <= 360 ? weather.currentWeather.windBearing * 2 : (weather.currentWeather.windBearing * 2) - 360;
+            string cardinalDirection = FindCardinalDirection(weather.currentWeather.windBearing);
+
             ViewBag.ApparentTemperature = Convert.ToInt32(weather.currentWeather.apparentTemperature) + "° F";
             ViewBag.Temperature = Convert.ToInt32(weather.currentWeather.temperature) + "° F";
+            ViewBag.CardinalDirection = weather.currentWeather.windSpeed + " mph winds from the " + cardinalDirection;
             ViewBag.CloudCover = weather.currentWeather.cloudCover + "%";
             ViewBag.DewPoint = Convert.ToInt32(weather.currentWeather.dewPoint) + "° F";
             ViewBag.Humidity = weather.currentWeather.humidity + "%";
@@ -48,13 +53,54 @@ namespace MvcApplication.Controllers
             //ViewBag.NearestStormDistance = weather.currentWeather.nearestStormDistance + " mi";
             //ViewBag.Ozone = weather.currentWeather.ozone;
             //ViewBag.PrecipIntensity = weather.currentWeather.precipIntensity + " in/hr";
-            ViewBag.PrecipProbablity = weather.currentWeather.precipProbablity + " %";
+            //ViewBag.PrecipProbablity = weather.currentWeather.precipProbablity + " %";
             ViewBag.Pressure = weather.currentWeather.pressure + " mb";
             ViewBag.Summary = weather.currentWeather.summary;
             ViewBag.Time = weather.currentWeather.time;
             ViewBag.Visibility = weather.currentWeather.visibility + " mi";
-            ViewBag.WindBearing = weather.currentWeather.windBearing + "°";
+            ViewBag.WindBearing = windDirection + "°. ";
             ViewBag.WindSpeed = weather.currentWeather.windSpeed + " mph";
+        }
+
+        private static string FindCardinalDirection(int windBearing)
+        {
+            string cardinalDirection;
+            if (windBearing == 0 || windBearing == 360)
+                cardinalDirection = "N";
+            else if (windBearing > 0 && windBearing < 45)
+                cardinalDirection = "NNE";
+            else if (windBearing == 45)
+                cardinalDirection = "NE";
+            else if (windBearing > 45 && windBearing < 90)
+                cardinalDirection = "ENE";
+            else if (windBearing == 90)
+                cardinalDirection = "E";
+            else if (windBearing > 90 && windBearing < 135)
+                cardinalDirection = "ESE";
+            else if (windBearing == 135)
+                cardinalDirection = "SE";
+            else if (windBearing > 135 && windBearing < 180)
+                cardinalDirection = "SSE";
+            else if (windBearing == 180)
+                cardinalDirection = "S";
+            else if (windBearing > 180 && windBearing < 225)
+                cardinalDirection = "SSW";
+            else if (windBearing == 225)
+                cardinalDirection = "SW";
+            else if (windBearing > 225 && windBearing < 270)
+                cardinalDirection = "WSW";
+            else if (windBearing == 270)
+                cardinalDirection = "W";
+            else if (windBearing > 270 && windBearing < 315)
+                cardinalDirection = "WNW";
+            else if (windBearing == 315)
+                cardinalDirection = "NW";
+            else if (windBearing > 315 && windBearing < 360)
+                cardinalDirection = "NNW";
+            else
+                cardinalDirection = "";
+
+            return cardinalDirection;
         }
 
         public void GetGeocode(string address, out double lat, out double lon)
