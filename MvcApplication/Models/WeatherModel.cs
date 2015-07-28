@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ForecastIO;
+using System.ComponentModel.DataAnnotations;
 
 namespace MvcApplication.Models
 {
@@ -118,6 +119,11 @@ namespace MvcApplication.Models
         public Daily day1;
         public Daily day2;
 
+        public WeatherModel()
+        {
+
+        }
+
         public WeatherModel(ForecastIO.ForecastIOResponse forecast)
         {
             this.currentWeather = new Current(forecast);
@@ -125,5 +131,8 @@ namespace MvcApplication.Models
             this.day1 = new Daily(forecast, 1);
             this.day2 = new Daily(forecast, 2);
         }
+
+        [Display(Name = "Address")]
+        public string Address { get; set; }
     }
 }

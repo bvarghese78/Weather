@@ -1,14 +1,19 @@
-﻿@{
+﻿@model MvcApplication.Models.WeatherModel
+@{
     ViewBag.Title = "Weather";
 }
 
 @section featured{
     <section class="featured">
         <div class="content-wrapper">
-            <input name="address" placeholder="Enter Address" type="text" />
-            <input type="submit"/>
+            @using(@Html.BeginForm("Index", "Weather", FormMethod.Post)){
+                <label>Enter a location</label>
+                @Html.TextBoxFor(m => m.Address)
+                <input type="submit" value="Submit"/>
+            }
+            
             <hgroup class="title">
-                <h2>Weather Information for Edmond, Oklahoma</h2>
+                <h2>Weather Information for New York, New York</h2>
             </hgroup>
         </div>
     </section>
@@ -25,3 +30,68 @@
 <p>Wind Direction: @ViewBag.WindBearing @ViewBag.CardinalDirection</p>
 <p>Visibility: @ViewBag.Visibility</p>
 <p>Pressure: @ViewBag.Pressure</p>
+
+<section class="featured"
+    <div class="content-wrapper">
+        <h3>Weekly Weather</h3>
+        <br />
+        <h5>Today @ViewBag.Day0Time</h5>
+        <p>Feels Like: @ViewBag.Day0ApparentTemperatureMax</p>
+        <p>Max Temp: @ViewBag.Day0TemperatureMax</p>
+        <p>Max Temp Time: @ViewBag.Day0TemperatureMaxTime</p>
+        <p>Min Temp: @ViewBag.Day0TemperatureMin</p>
+        <p>Min Temp Time: @ViewBag.Day0TemperatureMinTime</p>
+        <p>Condition: @ViewBag.Day0Summary</p>
+        <p>Cloud Cover: @ViewBag.Day0CloudCover</p>
+        <p>Dew Point: @ViewBag.Day0DewPoint</p>
+        <p>Humidity: @ViewBag.Day0Humidity</p>
+        <p>Wind Speed: @ViewBag.Day0WindSpeed</p>
+        <p>Wind Direction: @ViewBag.Day0WindBearing @ViewBag.Day0CardinalDirection</p>
+        <p>Visibility: @ViewBag.Day0Visibility</p>
+        <p>Pressure: @ViewBag.Day0Pressure</p>
+        <p>Sunrise: @ViewBag.Day0Sunrise</p>
+        <p>Sunset: @ViewBag.Day0Sunset</p>
+        <br />
+
+        @{var DayOfWeek = DateTime.Now.AddDays(1).DayOfWeek; }
+        <h5>@DayOfWeek @ViewBag.Day1Time</h5>
+
+        <p>Feels Like: @ViewBag.Day1ApparentTemperatureMax</p>
+        <p>Max Temp: @ViewBag.Day1TemperatureMax</p>
+        <p>Max Temp Time: @ViewBag.Day1TemperatureMaxTime</p>
+        <p>Min Temp: @ViewBag.Day1TemperatureMin</p>
+        <p>Min Temp Time: @ViewBag.Day1TemperatureMinTime</p>
+        <p>Condition: @ViewBag.Day1Summary</p>
+        <p>Cloud Cover: @ViewBag.Day1CloudCover</p>
+        <p>Dew Point: @ViewBag.Day1DewPoint</p>
+        <p>Humidity: @ViewBag.Day1Humidity</p>
+        <p>Wind Speed: @ViewBag.Day1WindSpeed</p>
+        <p>Wind Direction: @ViewBag.Day1WindBearing @ViewBag.Day1CardinalDirection</p>
+        <p>Visibility: @ViewBag.Day1Visibility</p>
+        <p>Pressure: @ViewBag.Day1Pressure</p>
+        <p>Sunrise: @ViewBag.Day1Sunrise</p>
+        <p>Sunset: @ViewBag.Day1Sunset</p>
+        <br />
+        
+        @{var DayOfWeek1 = DateTime.Now.AddDays(2).DayOfWeek; }
+        <h5>@DayOfWeek1 @ViewBag.Day2Time</h5>
+
+        <p>Feels Like: @ViewBag.Day2ApparentTemperatureMax</p>
+        <p>Max Temp: @ViewBag.Day2TemperatureMax</p>
+        <p>Max Temp Time: @ViewBag.Day2TemperatureMaxTime</p>
+        <p>Min Temp: @ViewBag.Day2TemperatureMin</p>
+        <p>Min Temp Time: @ViewBag.Day2TemperatureMinTime</p>
+        <p>Condition: @ViewBag.Day2Summary</p>
+        <p>Cloud Cover: @ViewBag.Day2CloudCover</p>
+        <p>Dew Point: @ViewBag.Day2DewPoint</p>
+        <p>Humidity: @ViewBag.Day2Humidity</p>
+        <p>Wind Speed: @ViewBag.Day2WindSpeed</p>
+        <p>Wind Direction: @ViewBag.Day2WindBearing @ViewBag.Day2CardinalDirection</p>
+        <p>Visibility: @ViewBag.Day2Visibility</p>
+        <p>Pressure: @ViewBag.Day2Pressure</p>
+        <p>Sunrise: @ViewBag.Day2Sunrise</p>
+        <p>Sunset: @ViewBag.Day2Sunset</p>
+    </div>
+</section>
+
+
