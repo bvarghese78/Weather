@@ -24,7 +24,8 @@ namespace MvcApplication.Controllers
             WeatherModel weather = GetForecast((float)lat, (float)lon);
             BuildCurrentView(weather);
             BuildDailyView(weather);
-                
+
+            ViewBag.CurrentCity = "New York, New York";
             return View();
         }
 
@@ -35,12 +36,16 @@ namespace MvcApplication.Controllers
             double lat;
             double lon;
 
-            GetGeocode(address, out lat, out lon);
+            if (address != null || address.Length != 0)
+                GetGeocode(address, out lat, out lon);
+            else
+                return View();
 
             WeatherModel weather = GetForecast((float)lat, (float)lon);
             BuildCurrentView(weather);
             BuildDailyView(weather);
 
+            ViewBag.CurrentCity = address + " (" + string.Format("{0:00.00000}, {1:00.00000}", lat, lon) + ")";
             return View(model);
         }
         public WeatherModel GetForecast(float lat, float lon)

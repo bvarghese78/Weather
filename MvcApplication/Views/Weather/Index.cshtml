@@ -13,7 +13,7 @@
             }
             
             <hgroup class="title">
-                <h2>Weather Information for New York, New York</h2>
+                <h2>Weather Information for @ViewBag.CurrentCity</h2>
             </hgroup>
         </div>
     </section>
@@ -21,6 +21,7 @@
 
 <h3>Right Now: @ViewBag.Temperature</h3>
 <br />
+<p>Current Local Time: @ViewBag.Time</p>
 <p>Feels Like: @ViewBag.ApparentTemperature</p>
 <p>Current Condition: @ViewBag.Summary</p>
 <p>Cloud Cover: @ViewBag.CloudCover</p>

@@ -85,3 +85,4 @@ C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcAppli
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\obj\Debug\MvcApplication.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\obj\Debug\MvcApplication.pdb
+C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\obj\Debug\MvcApplication.csprojResolveAssemblyReference.cache
