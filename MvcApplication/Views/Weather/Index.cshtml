@@ -54,8 +54,7 @@
         <p>Sunset: @ViewBag.Day0Sunset</p>
         <br />
 
-        @{var DayOfWeek = DateTime.Now.AddDays(1).DayOfWeek; }
-        <h5>@DayOfWeek @ViewBag.Day1Time</h5>
+        <h5>@ViewBag.Day1DayOfWeek @ViewBag.Day1Time</h5>
 
         <p>Feels Like: @ViewBag.Day1ApparentTemperatureMax</p>
         <p>Max Temp: @ViewBag.Day1TemperatureMax</p>
@@ -74,8 +73,7 @@
         <p>Sunset: @ViewBag.Day1Sunset</p>
         <br />
         
-        @{var DayOfWeek1 = DateTime.Now.AddDays(2).DayOfWeek; }
-        <h5>@DayOfWeek1 @ViewBag.Day2Time</h5>
+        <h5>@ViewBag.Day2DayOfWeek @ViewBag.Day2Time</h5>
 
         <p>Feels Like: @ViewBag.Day2ApparentTemperatureMax</p>
         <p>Max Temp: @ViewBag.Day2TemperatureMax</p>

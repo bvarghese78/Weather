@@ -17,6 +17,7 @@ C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcAppli
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\Microsoft.Web.WebPages.OAuth.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\Newtonsoft.Json.dll
+C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\RestSharp.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\System.Net.Http.Formatting.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\System.Spatial.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\System.Web.Helpers.dll
@@ -32,8 +33,9 @@ C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcAppli
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\WebGrease.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\WebMatrix.Data.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\WebMatrix.WebData.dll
-C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\EntityFramework.xml
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\Newtonsoft.Json.xml
+C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\RestSharp.xml
+C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\EntityFramework.xml
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\System.Net.Http.Formatting.xml
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\System.Web.Helpers.xml
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\System.Web.Http.xml
@@ -85,4 +87,3 @@ C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcAppli
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\obj\Debug\MvcApplication.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\obj\Debug\MvcApplication.pdb
-C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication\obj\Debug\MvcApplication.csprojResolveAssemblyReference.cache

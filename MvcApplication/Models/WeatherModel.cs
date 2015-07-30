@@ -50,7 +50,7 @@ namespace MvcApplication.Models
                 this.windSpeed = Convert.ToInt32(forecast.currently.windSpeed);
 
                 DateTime UnixTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-                this.time = UnixTime.AddSeconds(forecast.currently.time).ToLocalTime();
+                this.time = UnixTime.AddSeconds(forecast.currently.time);
             }
         }
 
@@ -106,11 +106,11 @@ namespace MvcApplication.Models
                 this.windSpeed = Convert.ToInt32(forecast.daily.data[index].windSpeed);
 
                 DateTime UnixTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-                this.time = UnixTime.AddSeconds(forecast.daily.data[index].time).ToLocalTime();
-                this.SunriseTime = UnixTime.AddSeconds(forecast.daily.data[index].sunriseTime).ToLocalTime();
-                this.SunsetTime = UnixTime.AddSeconds(forecast.daily.data[index].sunsetTime).ToLocalTime();
-                this.temperatureMaxTime = UnixTime.AddSeconds(forecast.daily.data[index].temperatureMaxTime).ToLocalTime();
-                this.temperatureMinTime = UnixTime.AddSeconds(forecast.daily.data[index].temperatureMinTime).ToLocalTime();
+                this.time = UnixTime.AddSeconds(forecast.daily.data[index].time);
+                this.SunriseTime = UnixTime.AddSeconds(forecast.daily.data[index].sunriseTime);
+                this.SunsetTime = UnixTime.AddSeconds(forecast.daily.data[index].sunsetTime);
+                this.temperatureMaxTime = UnixTime.AddSeconds(forecast.daily.data[index].temperatureMaxTime);
+                this.temperatureMinTime = UnixTime.AddSeconds(forecast.daily.data[index].temperatureMinTime);
             }
         }
 

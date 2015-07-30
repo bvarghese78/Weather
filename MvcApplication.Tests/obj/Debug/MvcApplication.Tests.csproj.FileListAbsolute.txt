@@ -8,6 +8,7 @@ C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcAppli
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\MvcApplication.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\RestSharp.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\System.Spatial.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\System.Web.Helpers.dll
@@ -31,6 +32,7 @@ C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcAppli
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\DotNetOpenAuth.OpenId.dll
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\MvcApplication.pdb
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\RestSharp.xml
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\System.Web.Helpers.xml
 C:\Users\bvarghese\documents\visual studio 2013\Projects\MvcApplication\MvcApplication.Tests\bin\Debug\System.Web.Http.xml
