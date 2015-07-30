@@ -51,10 +51,14 @@ namespace MvcApplication.Controllers
             BuildDailyView(weather, UTCOffset);
 
             ViewBag.CurrentCity = address + " (" + string.Format("{0:00.00000}, {1:00.00000}", lat, lon) + ")";
-            return View();
+            return View(model);
         }
+
+        // Get Forecast information for a location using "Forecast.io" API
+        // We are using Forecast.io.45 wrapper library to contact Forecast.io API
         public WeatherModel GetForecast(float lat, float lon)
         {
+            // ForecastIORequest(API key, lat, lon, measurement unit)
             var request = new ForecastIORequest("d1d02d9b39d4125af3216ea665368a5c", lat, lon, Unit.us);
             var response = request.Get();
 
@@ -62,6 +66,8 @@ namespace MvcApplication.Controllers
             return weather;
         }
 
+        // Get UTC Offset and TimeZone info for a location using Google's TimeZone API
+        // We are using RestSharp library to contact Google TimeZone API.
         public Helpers.GoogleTimeZone GetLocalDateTime(double latitude, double longitude, DateTime utcDate)
         {
             DateTime unix = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
@@ -74,8 +80,7 @@ namespace MvcApplication.Controllers
             request.AddParameter("timestamp", unixSeconds);
             var response = client.Execute(request);
 
-            var offset = Newtonsoft.Json.JsonConvert.DeserializeObject<Helpers.GoogleTimeZone>(response.Content);
-            //return utcDate.AddSeconds(offset.rawOffset + offset.dstOffset);
+            Helpers.GoogleTimeZone offset = Newtonsoft.Json.JsonConvert.DeserializeObject<Helpers.GoogleTimeZone>(response.Content);
             return offset;
         }
 
@@ -234,6 +239,7 @@ namespace MvcApplication.Controllers
             return cardinalDirection;
         }
 
+        // Gets latitude and longitude for a given address using Google's Location Services API
         public void GetGeocode(string address, out double lat, out double lon)
         {
             var googleLocation = new GoogleLocationService();
