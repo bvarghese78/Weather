@@ -8,6 +8,7 @@ using MvcApplication.Models;
 using System.Threading.Tasks;
 using GoogleMaps.LocationServices;
 using RestSharp;
+using System.Diagnostics;
 
 namespace MvcApplication.Controllers
 {
@@ -35,6 +36,8 @@ namespace MvcApplication.Controllers
         [HttpPost]
         public ActionResult Index(WeatherModel model)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             string address = model.Address;
             double lat;
             double lon;
@@ -49,6 +52,8 @@ namespace MvcApplication.Controllers
             DateTime localTime = weather.currentWeather.time.AddSeconds(UTCOffset.rawOffset + UTCOffset.dstOffset);
             BuildCurrentView(weather, localTime);
             BuildDailyView(weather, UTCOffset);
+            stopwatch.Stop();
+            ViewBag.StopWatch = "Elapsed Time: " + stopwatch.ElapsedMilliseconds;
 
             ViewBag.CurrentCity = address + " (" + string.Format("{0:00.00000}, {1:00.00000}", lat, lon) + ")";
             return View(model);
@@ -65,6 +70,17 @@ namespace MvcApplication.Controllers
             WeatherModel weather = new WeatherModel(response);
             return weather;
         }
+
+        //private static WeatherModel GetForecastRestSharp(float lat, float lon)
+        //{
+        //    var latlon = lat + "," + lon;
+        //    var client = new RestClient("https://api.forecast.io/forecast/d1d02d9b39d4125af3216ea665368a5c/");
+        //    var request = new RestRequest(latlon);
+        //    var response = client.Execute(request);
+            
+        //    var weather = Newtonsoft.Json.JsonConvert.DeserializeObject<WeatherModel>(response.Content);
+        //    return weather;
+        //}
 
         // Get UTC Offset and TimeZone info for a location using Google's TimeZone API
         // We are using RestSharp library to contact Google TimeZone API.
