@@ -1,0 +1,7 @@
+*.cache
+MvcApplication.Tests/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.cache
+MvcApplication/bin/MvcApplication.dll
+*.pdb
+MvcApplication/obj/Debug/MvcApplication.csproj.FileListAbsolute.txt
+MvcApplication/obj/Debug/MvcApplication.dll
