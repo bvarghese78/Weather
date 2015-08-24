@@ -31,12 +31,15 @@
             <table>
                 <tr>
                     <th></th>
-                    @foreach (var item in Model)
+                    @foreach (KeyValuePair<DateTime, List<MvcApplication.Models.Definitions.PastReps>> item in Model)
                     {
-                        <th>@Html.Encode(item.ExerciseName)</th>
+                        var key = item.Key;
+                        var value = item.Value;
+                      
+                        <th>@Html.Encode(value[0].ExerciseName)</th>
                     }
                 </tr>
-
+                    
                     @foreach (var item in Model)
                     {
                         <tr>

@@ -59,29 +59,53 @@ namespace MvcApplication.Controllers
         public ActionResult WorkoutChosen(string id)
         {
             TempGetWorkout();
-            var pastWorkoutResults = model.GetPastWorkouts(Convert.ToInt32(id));
-            //List<PastReps> p = new List<PastReps>();
-            //p.Add(new PastReps());
-            //p[0].Date = new DateTime(2015, 8, 1);
-            //p[0].Id = 1;
-            //p[0].Reps = 8;
-            //p[0].Weight = null;
-            //p[0].ExerciseName = "Standarad Push Ups";
-            //p.Add(new PastReps());
-            //p[1].Date = new DateTime(2015, 8, 8);
-            //p[1].Id = 1;
-            //p[1].Reps = 10;
-            //p[1].Weight = null;
-            //p[1].ExerciseName = "Wide Fly Pull Ups";
-            //p.Add(new PastReps());
-            //p[2].Date = new DateTime(2015, 8, 15);
-            //p[2].Id = 1;
-            //p[2].Reps = 12;
-            //p[2].Weight = null;
-            //p[2].ExerciseName = "Military Pushups";
+            //var pastWorkoutResults = model.GetPastWorkouts(Convert.ToInt32(id));
+            Dictionary<DateTime, List<PastReps>> d = new Dictionary<DateTime, List<PastReps>>();
+            List<PastReps> p = new List<PastReps>();
+            p.Add(new PastReps());
+            p[0].Date = new DateTime(2015, 8, 1);
+            p[0].Id = 1;
+            p[0].Reps = 8;
+            p[0].Weight = null;
+            p[0].ExerciseName = "Standarad Push Ups";
+            p.Add(new PastReps());
+            p[1].Date = new DateTime(2015, 8, 1);
+            p[1].Id = 1;
+            p[1].Reps = 10;
+            p[1].Weight = null;
+            p[1].ExerciseName = "Wide Fly Pull Ups";
+            p.Add(new PastReps());
+            p[2].Date = new DateTime(2015, 8, 1);
+            p[2].Id = 1;
+            p[2].Reps = 12;
+            p[2].Weight = null;
+            p[2].ExerciseName = "Military Pushups";
+
+            d.Add(p[0].Date, p);
+            List<PastReps> p1 = new List<PastReps>();
+            p1.Add(new PastReps());
+            p1[0].Date = new DateTime(2015, 8, 8);
+            p1[0].Id = 1;
+            p1[0].Reps = 10;
+            p1[0].Weight = null;
+            p1[0].ExerciseName = "Standarad Push Ups";
+            p1.Add(new PastReps());
+            p1[1].Date = new DateTime(2015, 8, 8);
+            p1[1].Id = 1;
+            p1[1].Reps = 10;
+            p1[1].Weight = null;
+            p1[1].ExerciseName = "Wide Fly Pull Ups";
+            p1.Add(new PastReps());
+            p1[2].Date = new DateTime(2015, 8, 8);
+            p1[2].Id = 1;
+            p1[2].Reps = 15;
+            p1[2].Weight = null;
+            p1[2].ExerciseName = "Military Pushups";
+
+            d.Add(p1[0].Date, p1);
 
             ViewBag.CurrentExerciseGroup = "Chest & Back";
-            return View(p);
+            return View(d);
         }
     }
 }
