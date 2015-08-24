@@ -114,6 +114,11 @@ h5, h6 {
         background: url("../Images/heroAccent.png") no-repeat;
     }
 
+    .exercise-featured{
+        background-color:#222;
+        color:#fff;
+    }
+
 header .content-wrapper {
     padding-top: 20px; 
 }

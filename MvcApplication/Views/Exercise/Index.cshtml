@@ -24,14 +24,9 @@
         <fieldset>
             Choose Workout
             @Html.DropDownList("id", (SelectList)null, new {onchange = "this.form.submit();"})
-            @*<input type="submit" value="submit" />*@
         </fieldset>
     </form>
 }
-</div>
-
-<div>
-    @ViewBag.Attempts
 </div>
 
 <fieldset>

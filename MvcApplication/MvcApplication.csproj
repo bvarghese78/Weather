@@ -322,6 +322,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Weather\Index.cshtml" />
     <Content Include="Views\Exercise\Index.cshtml" />
+    <Content Include="Views\Exercise\WorkoutChosen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

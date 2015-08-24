@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Workouts";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+<div>
+    @using (Html.BeginForm("WorkoutChosen", "Exercise", new { id = "" }))
+    {
+        <form action="/Exercise/WorkoutChosen" method="post">
+            <fieldset>
+                Choose Workout
+                @Html.DropDownList("id", (SelectList)null, new { onchange = "this.form.submit();" })
+            </fieldset>
+        </form>
+    }
+</div>
+
+<br/>
+
+<section class="exercise-featured">
+    <div class="content-wrapper">
+        <hgroup class="title">
+            <h3>@ViewBag.CurrentExerciseGroup</h3>
+            <h5>Previous attempts</h5>
+        </hgroup>
+
+        <div class="table">
+            <table>
+                <tr>
+                    <th></th>
+                    @foreach (var item in Model)
+                    {
+                        <th>@Html.Encode(item.ExerciseName)</th>
+                    }
+                </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.Encode(item.Date)</td>
+                            <td>@Html.Encode(item.Reps)</td>
+                        </tr>
+                    }
+            </table>
+        </div>
+    </div>
+</section>
+

@@ -29,5 +29,23 @@ namespace MvcApplication.Models
 
             return ret;
         }
+
+        public List<PastReps> GetPastWorkouts(int exerciseID)
+        {
+            List<PastReps> ret = new List<PastReps>();
+            mysql.Open();
+
+            var command = mysql.CreateCommand();
+            command.CommandText = @"select idExerciseIndividual, reps, weight, date, exercisename from dailyreps inner join exerciseindividual on dailyreps.idExerciseIndividual = exerciseindividual.idExerciseIndividual where idExerciseIndividual=@ei";
+            command.Parameters.AddWithValue("@ei", exerciseID);
+
+            var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                ret.Add(new PastReps(reader));
+            }
+
+            return ret;
+        }
     }
 }

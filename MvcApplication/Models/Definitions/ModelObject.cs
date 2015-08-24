@@ -26,4 +26,26 @@ namespace MvcApplication.Models.Definitions
             this.WorkoutName = Convert.ToString(reader["WorkoutName"]);
         }
     }
+
+    /// <summary>
+    /// This represents the Reps/weights for each exercise done in the past.
+    /// </summary>
+    public class PastReps
+    {
+        public int Id;
+        public int Reps;
+        public int? Weight;
+        public DateTime Date;
+        public string ExerciseName;
+
+        public PastReps() { }
+        public PastReps(IDataReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["idExerciseIndividual"]);
+            this.Reps = Convert.ToInt32(reader["Reps"]);
+            this.Weight = reader["Weight"] is DBNull ? null : (int?)Convert.ToInt32(reader["Weight"]);
+            this.Date = Convert.ToDateTime(reader["Date"]);
+            this.ExerciseName = Convert.ToString(reader["ExerciseName"]);
+        }
+    }
 }

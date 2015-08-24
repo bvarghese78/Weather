@@ -9,5 +9,6 @@ namespace MvcApplication.Models.Definitions
     public interface IExerciseModel
     {
         List<Workout> GetWorkout();
+        List<PastReps> GetPastWorkouts(int exerciseID);
     }
 }
