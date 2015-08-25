@@ -13,6 +13,7 @@ namespace MvcApplication.Controllers
     {
         ExerciseModel model = new ExerciseModel();
         List<Workout> workoutType = new List<Workout>();
+        Dictionary<int, string> currentExerciseDict = new Dictionary<int, string>();
 
         //
         // GET: /Exercise/
@@ -31,6 +32,11 @@ namespace MvcApplication.Controllers
             /* Improvements */
             if (workoutType.Count == 0)
                 workoutType = model.GetWorkout();
+            // save a set of workout id and name so we can use it at other places
+            foreach(var entry in workouts)
+            {
+                currentExerciseDict.Add(entry.Id, entry.WorkoutName);
+            }
             /* Improvements */
 
             List<SelectListItem> items = new List<SelectListItem>(); // This list allows you to add items to a combo box ad asign text name and value
@@ -50,6 +56,7 @@ namespace MvcApplication.Controllers
             items.Add(new SelectListItem { Text = "Shoulders & Arms", Value = "3" });
 
             ViewBag.id = items;
+            ViewBag.CurrentExerciseType = "Shoulders & Arms";
         }
 
         /// <summary>
@@ -121,7 +128,7 @@ namespace MvcApplication.Controllers
 
                         dict.Add(tempDate, tempPastReps);
                         tempPastReps = new List<PastReps>();
-                        tempDate = item.Date;
+                        tempDate = item.Date.Date;
                     }
                 }
 
@@ -129,7 +136,21 @@ namespace MvcApplication.Controllers
             }
 
             ViewBag.CurrentExerciseGroup = "Chest & Back";
+
+            PopulateNewEntry();
             return View(dict);
+        }
+
+        private void PopulateNewEntry()
+        {
+            if(ViewBag.exerciseName == "")
+                ViewBag.exerciseName = "Standard Pushups";
+            else
+            {
+                var currentName = ViewBag.exerciseName;
+                var key = currentExerciseDict.FirstOrDefault(x => x.Value == currentName).Key;
+                ViewBag.exerciseName = currentExerciseDict.FirstOrDefault(x => x.Key == key + 1);
+            }
         }
     }
 }

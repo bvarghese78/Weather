@@ -591,6 +591,14 @@ tr.pager td {
     padding: 0 0.25em 0 0;
 }
 
+/* exercise
+ -----------------------------------------------------------*/
+
+#exercise-move-right{
+    display: inline;
+
+}
+
 
 /********************
 *   Mobile Styles   *
