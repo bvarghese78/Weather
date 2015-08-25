@@ -33,20 +33,30 @@
                     <th></th>
                     @foreach (KeyValuePair<DateTime, List<MvcApplication.Models.Definitions.PastReps>> item in Model)
                     {
-                        var key = item.Key;
                         var value = item.Value;
                       
-                        <th>@Html.Encode(value[0].ExerciseName)</th>
+                        foreach (var rep in value)
+                        {
+                            <th>@Html.Encode(rep.ExerciseName)</th>
+                        }
+                        break;
                     }
                 </tr>
+                
+                @foreach (KeyValuePair<DateTime, List<MvcApplication.Models.Definitions.PastReps>> item in Model)
+                {
+                    var key = item.Key;
+                    var value = item.Value;
                     
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@Html.Encode(item.Date)</td>
-                            <td>@Html.Encode(item.Reps)</td>
-                        </tr>
-                    }
+                    <tr>
+                        <td>@Html.Encode(value[0].Date)</td>    
+
+                        @foreach(var entry in value)
+                        {
+                            <td>@Html.Encode(entry.Reps)</td>
+                        }
+                    </tr>
+                }
             </table>
         </div>
     </div>

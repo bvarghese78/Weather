@@ -254,5 +254,6 @@ C:\Users\bvarghese\Documents\Visual Studio 2013\Projects\Weather\MvcApplication\
 C:\Users\bvarghese\Documents\Visual Studio 2013\Projects\Weather\MvcApplication\bin\ru\System.Spatial.resources.dll
 C:\Users\bvarghese\Documents\Visual Studio 2013\Projects\Weather\MvcApplication\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\bvarghese\Documents\Visual Studio 2013\Projects\Weather\MvcApplication\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\bvarghese\Documents\Visual Studio 2013\Projects\Weather\MvcApplication\obj\Debug\MvcApplication.csprojResolveAssemblyReference.cache
 C:\Users\bvarghese\Documents\Visual Studio 2013\Projects\Weather\MvcApplication\obj\Debug\MvcApplication.dll
 C:\Users\bvarghese\Documents\Visual Studio 2013\Projects\Weather\MvcApplication\obj\Debug\MvcApplication.pdb

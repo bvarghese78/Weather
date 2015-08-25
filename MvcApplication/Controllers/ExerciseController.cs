@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MvcApplication.Models;
 using MvcApplication.Models.Definitions;
+using System.Threading.Tasks;
 
 namespace MvcApplication.Controllers
 {
@@ -56,14 +57,10 @@ namespace MvcApplication.Controllers
         /// </summary>
         /// <param name="id"></param>
         [HttpPost]
-        public ActionResult WorkoutChosen(string id)
+        public async Task<ActionResult> WorkoutChosen(string id)
         {
             TempGetWorkout();
-            //var pastWorkoutResults = model.GetPastWorkouts(Convert.ToInt32(id));
-
-            // Find date for each item in the list
-            // Add the PastReps object into a new List 
-            // Add the new List into Dictionary
+            //List<PastReps> pastWorkoutResults = await model.GetPastWorkouts(Convert.ToInt32(id));
 
             Dictionary<DateTime, List<PastReps>> d = new Dictionary<DateTime, List<PastReps>>();
             List<PastReps> p = new List<PastReps>();
@@ -85,32 +82,54 @@ namespace MvcApplication.Controllers
             p[2].Reps = 12;
             p[2].Weight = null;
             p[2].ExerciseName = "Military Pushups";
+            p.Add(new PastReps());
+            p[3].Date = new DateTime(2015, 8, 8);
+            p[3].Id = 1;
+            p[3].Reps = 10;
+            p[3].Weight = null;
+            p[3].ExerciseName = "Standarad Push Ups";
+            p.Add(new PastReps());
+            p[4].Date = new DateTime(2015, 8, 8);
+            p[4].Id = 1;
+            p[4].Reps = 10;
+            p[4].Weight = null;
+            p[4].ExerciseName = "Wide Fly Pull Ups";
+            p.Add(new PastReps());
+            p[5].Date = new DateTime(2015, 8, 8);
+            p[5].Id = 1;
+            p[5].Reps = 15;
+            p[5].Weight = null;
+            p[5].ExerciseName = "Military Pushups";
 
-            d.Add(p[0].Date, p);
-            List<PastReps> p1 = new List<PastReps>();
-            p1.Add(new PastReps());
-            p1[0].Date = new DateTime(2015, 8, 8);
-            p1[0].Id = 1;
-            p1[0].Reps = 10;
-            p1[0].Weight = null;
-            p1[0].ExerciseName = "Standarad Push Ups";
-            p1.Add(new PastReps());
-            p1[1].Date = new DateTime(2015, 8, 8);
-            p1[1].Id = 1;
-            p1[1].Reps = 10;
-            p1[1].Weight = null;
-            p1[1].ExerciseName = "Wide Fly Pull Ups";
-            p1.Add(new PastReps());
-            p1[2].Date = new DateTime(2015, 8, 8);
-            p1[2].Id = 1;
-            p1[2].Reps = 15;
-            p1[2].Weight = null;
-            p1[2].ExerciseName = "Military Pushups";
+            Dictionary<DateTime, List<PastReps>> dict = new Dictionary<DateTime, List<PastReps>>();
+            List<PastReps> tempPastReps = new List<PastReps>();
+            DateTime tempDate = DateTime.MinValue;
+            int counter = 0;
 
-            d.Add(p1[0].Date, p1);
+            // Takes the item in PastWorkoutResult and put it in a dictionary with date as the key and the values are the exercises done for that date.
+            foreach (var item in p) // Change "p" to PastWorkoutResults
+            {
+                counter++;
+                if (tempDate != item.Date || counter == p.Count)  // Change "p" to PastWorkoutResults
+                {
+                    if(tempDate == DateTime.MinValue)
+                        tempDate = item.Date;
+                    else
+                    {
+                        if (counter == p.Count)   // Change "p" to PastWorkoutResults
+                            tempPastReps.Add(item);
+
+                        dict.Add(tempDate, tempPastReps);
+                        tempPastReps = new List<PastReps>();
+                        tempDate = item.Date;
+                    }
+                }
+
+                tempPastReps.Add(item);
+            }
 
             ViewBag.CurrentExerciseGroup = "Chest & Back";
-            return View(d);
+            return View(dict);
         }
     }
 }
