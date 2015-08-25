@@ -60,6 +60,11 @@ namespace MvcApplication.Controllers
         {
             TempGetWorkout();
             //var pastWorkoutResults = model.GetPastWorkouts(Convert.ToInt32(id));
+
+            // Find date for each item in the list
+            // Add the PastReps object into a new List 
+            // Add the new List into Dictionary
+
             Dictionary<DateTime, List<PastReps>> d = new Dictionary<DateTime, List<PastReps>>();
             List<PastReps> p = new List<PastReps>();
             p.Add(new PastReps());

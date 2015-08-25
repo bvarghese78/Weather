@@ -36,7 +36,7 @@ namespace MvcApplication.Models
             mysql.Open();
 
             var command = mysql.CreateCommand();
-            command.CommandText = @"select idExerciseIndividual, reps, weight, date, exercisename from dailyreps inner join exerciseindividual on dailyreps.idExerciseIndividual = exerciseindividual.idExerciseIndividual where idExerciseIndividual=@ei";
+            command.CommandText = @"select idExerciseIndividual, reps, weight, date, exercisename from dailyreps inner join exerciseindividual on dailyreps.ExerciseIndividualid = exerciseindividual.idExerciseIndividual where ExerciseGroups_idExerciseGroups=@ei order by date asc";
             command.Parameters.AddWithValue("@ei", exerciseID);
 
             var reader = command.ExecuteReader();
