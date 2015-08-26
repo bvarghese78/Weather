@@ -20,8 +20,8 @@ namespace MvcApplication.Controllers
 
         public ActionResult Index()
         {
-            //GetWorkout();
-            TempGetWorkout();
+            GetWorkout();
+            //TempGetWorkout();
             return View();
         }
 
@@ -30,8 +30,9 @@ namespace MvcApplication.Controllers
         {
             var workouts = model.GetWorkout();
             /* Improvements */
-            if (workoutType.Count == 0)
-                workoutType = model.GetWorkout();
+            //if (workoutType.Count == 0)
+            //    workoutType = model.GetWorkout();
+
             // save a set of workout id and name so we can use it at other places
             foreach(var entry in workouts)
             {
@@ -67,7 +68,7 @@ namespace MvcApplication.Controllers
         public async Task<ActionResult> WorkoutChosen(string id)
         {
             TempGetWorkout();
-            //List<PastReps> pastWorkoutResults = await model.GetPastWorkouts(Convert.ToInt32(id));
+            List<PastReps> pastWorkoutResults = await model.GetPastWorkouts(Convert.ToInt32(id));
 
             Dictionary<DateTime, List<PastReps>> d = new Dictionary<DateTime, List<PastReps>>();
             List<PastReps> p = new List<PastReps>();
@@ -114,16 +115,16 @@ namespace MvcApplication.Controllers
             int counter = 0;
 
             // Takes the item in PastWorkoutResult and put it in a dictionary with date as the key and the values are the exercises done for that date.
-            foreach (var item in p) // Change "p" to PastWorkoutResults
+            foreach (var item in pastWorkoutResults)
             {
                 counter++;
-                if (tempDate != item.Date || counter == p.Count)  // Change "p" to PastWorkoutResults
+                if (tempDate != item.Date || counter == pastWorkoutResults.Count)
                 {
                     if(tempDate == DateTime.MinValue)
                         tempDate = item.Date;
                     else
                     {
-                        if (counter == p.Count)   // Change "p" to PastWorkoutResults
+                        if (counter == pastWorkoutResults.Count)
                             tempPastReps.Add(item);
 
                         dict.Add(tempDate, tempPastReps);
@@ -149,7 +150,8 @@ namespace MvcApplication.Controllers
             {
                 var currentName = ViewBag.exerciseName;
                 var key = currentExerciseDict.FirstOrDefault(x => x.Value == currentName).Key;
-                ViewBag.exerciseName = currentExerciseDict.FirstOrDefault(x => x.Key == key + 1);
+                var a = currentExerciseDict.FirstOrDefault(x => x.Key == key + 1);
+                ViewBag.exerciseName = a;
             }
         }
     }

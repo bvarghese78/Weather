@@ -73,7 +73,7 @@
         @using (@Html.BeginForm("Index", "Exercise", FormMethod.Post))
         {
             <label>Exercise Name</label>
-            @Html.TextBox("exerciseName", (string)ViewBag.exerciseName);
+            @Html.TextBox("exerciseName");
 
             <label>Reps</label>
             @Html.TextBox("reps");
