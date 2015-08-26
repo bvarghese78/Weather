@@ -13,7 +13,7 @@ namespace MvcApplication.Controllers
     {
         ExerciseModel model = new ExerciseModel();
         List<Workout> workoutType = new List<Workout>();
-        Dictionary<int, string> currentExerciseDict = new Dictionary<int, string>();
+        Dictionary<int, string> currentWorkoutDict = new Dictionary<int, string>();
 
         //
         // GET: /Exercise/
@@ -28,20 +28,20 @@ namespace MvcApplication.Controllers
         // Get Workout Types from DB and populate to a combo box
         private void GetWorkout()
         {
-            var workouts = model.GetWorkout();
+            //var workouts = model.GetWorkout();
+
             /* Improvements */
-            //if (workoutType.Count == 0)
-            //    workoutType = model.GetWorkout();
+            workoutType = model.GetWorkout();
 
             // save a set of workout id and name so we can use it at other places
-            foreach(var entry in workouts)
+            foreach(var entry in workoutType)
             {
-                currentExerciseDict.Add(entry.Id, entry.WorkoutName);
+                currentWorkoutDict.Add(entry.Id, entry.WorkoutName);
             }
             /* Improvements */
 
             List<SelectListItem> items = new List<SelectListItem>(); // This list allows you to add items to a combo box ad asign text name and value
-            foreach (var item in workouts)
+            foreach (var item in workoutType)
             {
                 items.Add(new SelectListItem { Text = item.WorkoutName, Value = Convert.ToString(item.Id) });
             }
@@ -67,47 +67,48 @@ namespace MvcApplication.Controllers
         [HttpPost]
         public async Task<ActionResult> WorkoutChosen(string id)
         {
-            TempGetWorkout();
+            //TempGetWorkout();
+            GetWorkout(); // Populate the combo box
             List<PastReps> pastWorkoutResults = await model.GetPastWorkouts(Convert.ToInt32(id));
 
-            Dictionary<DateTime, List<PastReps>> d = new Dictionary<DateTime, List<PastReps>>();
-            List<PastReps> p = new List<PastReps>();
-            p.Add(new PastReps());
-            p[0].Date = new DateTime(2015, 8, 1);
-            p[0].Id = 1;
-            p[0].Reps = 8;
-            p[0].Weight = null;
-            p[0].ExerciseName = "Standarad Push Ups";
-            p.Add(new PastReps());
-            p[1].Date = new DateTime(2015, 8, 1);
-            p[1].Id = 1;
-            p[1].Reps = 10;
-            p[1].Weight = null;
-            p[1].ExerciseName = "Wide Fly Pull Ups";
-            p.Add(new PastReps());
-            p[2].Date = new DateTime(2015, 8, 1);
-            p[2].Id = 1;
-            p[2].Reps = 12;
-            p[2].Weight = null;
-            p[2].ExerciseName = "Military Pushups";
-            p.Add(new PastReps());
-            p[3].Date = new DateTime(2015, 8, 8);
-            p[3].Id = 1;
-            p[3].Reps = 10;
-            p[3].Weight = null;
-            p[3].ExerciseName = "Standarad Push Ups";
-            p.Add(new PastReps());
-            p[4].Date = new DateTime(2015, 8, 8);
-            p[4].Id = 1;
-            p[4].Reps = 10;
-            p[4].Weight = null;
-            p[4].ExerciseName = "Wide Fly Pull Ups";
-            p.Add(new PastReps());
-            p[5].Date = new DateTime(2015, 8, 8);
-            p[5].Id = 1;
-            p[5].Reps = 15;
-            p[5].Weight = null;
-            p[5].ExerciseName = "Military Pushups";
+            //Dictionary<DateTime, List<PastReps>> d = new Dictionary<DateTime, List<PastReps>>();
+            //List<PastReps> p = new List<PastReps>();
+            //p.Add(new PastReps());
+            //p[0].Date = new DateTime(2015, 8, 1);
+            //p[0].Id = 1;
+            //p[0].Reps = 8;
+            //p[0].Weight = null;
+            //p[0].ExerciseName = "Standarad Push Ups";
+            //p.Add(new PastReps());
+            //p[1].Date = new DateTime(2015, 8, 1);
+            //p[1].Id = 1;
+            //p[1].Reps = 10;
+            //p[1].Weight = null;
+            //p[1].ExerciseName = "Wide Fly Pull Ups";
+            //p.Add(new PastReps());
+            //p[2].Date = new DateTime(2015, 8, 1);
+            //p[2].Id = 1;
+            //p[2].Reps = 12;
+            //p[2].Weight = null;
+            //p[2].ExerciseName = "Military Pushups";
+            //p.Add(new PastReps());
+            //p[3].Date = new DateTime(2015, 8, 8);
+            //p[3].Id = 1;
+            //p[3].Reps = 10;
+            //p[3].Weight = null;
+            //p[3].ExerciseName = "Standarad Push Ups";
+            //p.Add(new PastReps());
+            //p[4].Date = new DateTime(2015, 8, 8);
+            //p[4].Id = 1;
+            //p[4].Reps = 10;
+            //p[4].Weight = null;
+            //p[4].ExerciseName = "Wide Fly Pull Ups";
+            //p.Add(new PastReps());
+            //p[5].Date = new DateTime(2015, 8, 8);
+            //p[5].Id = 1;
+            //p[5].Reps = 15;
+            //p[5].Weight = null;
+            //p[5].ExerciseName = "Military Pushups";
 
             Dictionary<DateTime, List<PastReps>> dict = new Dictionary<DateTime, List<PastReps>>();
             List<PastReps> tempPastReps = new List<PastReps>();
@@ -136,22 +137,30 @@ namespace MvcApplication.Controllers
                 tempPastReps.Add(item);
             }
 
-            ViewBag.CurrentExerciseGroup = "Chest & Back";
+            var a = currentWorkoutDict.First(x => x.Key == Convert.ToInt32(id)); // Find the outcome of this. Is it the value or key/value. Delete afterwards
+            string currExerciseName;
+            currentWorkoutDict.TryGetValue(Convert.ToInt32(id), out currExerciseName);
+            ViewBag.CurrentExerciseGroup = currExerciseName;
 
-            PopulateNewEntry();
+            PopulateNewEntry(pastWorkoutResults);
             return View(dict);
         }
 
-        private void PopulateNewEntry()
+        // Not complete. Sanity checks
+        private void PopulateNewEntry(List<PastReps> ExerciseNames)
         {
-            if(ViewBag.exerciseName == "")
-                ViewBag.exerciseName = "Standard Pushups";
+            if (ViewBag.exerciseName == null)
+                ViewBag.exerciseName = ExerciseNames[0].ExerciseName;
             else
             {
                 var currentName = ViewBag.exerciseName;
-                var key = currentExerciseDict.FirstOrDefault(x => x.Value == currentName).Key;
-                var a = currentExerciseDict.FirstOrDefault(x => x.Key == key + 1);
-                ViewBag.exerciseName = a;
+                for(int i = 0; i < ExerciseNames.Count; i++)
+                {
+                    if(ExerciseNames[i].ExerciseName== currentName)
+                    {
+                        ViewBag.exerciseName = ExerciseNames[i + 1].ExerciseName;
+                    }
+                }
             }
         }
     }
