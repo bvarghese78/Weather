@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using MvcApplication.Models.Definitions;
 using System.Configuration;
+using System.Threading.Tasks;
 
 namespace MvcApplication.Models
 {
@@ -30,17 +31,17 @@ namespace MvcApplication.Models
             return ret;
         }
 
-        public List<PastReps> GetPastWorkouts(int exerciseID)
+        public async Task<List<PastReps>> GetPastWorkouts(int exerciseID)
         {
             List<PastReps> ret = new List<PastReps>();
-            mysql.Open();
+            await mysql.OpenAsync();
 
             var command = mysql.CreateCommand();
             command.CommandText = @"select idExerciseIndividual, reps, weight, date, exercisename from dailyreps inner join exerciseindividual on dailyreps.ExerciseIndividualid = exerciseindividual.idExerciseIndividual where ExerciseGroups_idExerciseGroups=@ei order by date asc";
             command.Parameters.AddWithValue("@ei", exerciseID);
 
-            var reader = command.ExecuteReader();
-            while (reader.Read())
+            var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
             {
                 ret.Add(new PastReps(reader));
             }
