@@ -34,7 +34,11 @@ namespace MvcApplication.Models
         public async Task<List<PastReps>> GetPastWorkouts(int exerciseID)
         {
             List<PastReps> ret = new List<PastReps>();
-            await mysql.OpenAsync();
+            if (mysql.State == ConnectionState.Open)
+            {
+                await mysql.CloseAsync();
+                await mysql.OpenAsync();
+            }   
 
             var command = mysql.CreateCommand();
             command.CommandText = @"select idExerciseIndividual, reps, weight, date, exercisename from dailyreps inner join exerciseindividual on dailyreps.ExerciseIndividualid = exerciseindividual.idExerciseIndividual where ExerciseGroups_idExerciseGroups=@ei order by date asc";

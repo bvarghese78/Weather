@@ -21,7 +21,6 @@ namespace MvcApplication.Controllers
         public ActionResult Index()
         {
             GetWorkout();
-            //TempGetWorkout();
             return View();
         }
 
@@ -49,17 +48,6 @@ namespace MvcApplication.Controllers
             ViewBag.id = items;
         }
 
-        private void TempGetWorkout()
-        {
-            List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "Chest & Back", Value = "1" });
-            items.Add(new SelectListItem { Text = "Plyometrics", Value = "2" });
-            items.Add(new SelectListItem { Text = "Shoulders & Arms", Value = "3" });
-
-            ViewBag.id = items;
-            ViewBag.CurrentExerciseType = "Shoulders & Arms";
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -67,48 +55,8 @@ namespace MvcApplication.Controllers
         [HttpPost]
         public async Task<ActionResult> WorkoutChosen(string id)
         {
-            //TempGetWorkout();
             GetWorkout(); // Populate the combo box
             List<PastReps> pastWorkoutResults = await model.GetPastWorkouts(Convert.ToInt32(id));
-
-            //Dictionary<DateTime, List<PastReps>> d = new Dictionary<DateTime, List<PastReps>>();
-            //List<PastReps> p = new List<PastReps>();
-            //p.Add(new PastReps());
-            //p[0].Date = new DateTime(2015, 8, 1);
-            //p[0].Id = 1;
-            //p[0].Reps = 8;
-            //p[0].Weight = null;
-            //p[0].ExerciseName = "Standarad Push Ups";
-            //p.Add(new PastReps());
-            //p[1].Date = new DateTime(2015, 8, 1);
-            //p[1].Id = 1;
-            //p[1].Reps = 10;
-            //p[1].Weight = null;
-            //p[1].ExerciseName = "Wide Fly Pull Ups";
-            //p.Add(new PastReps());
-            //p[2].Date = new DateTime(2015, 8, 1);
-            //p[2].Id = 1;
-            //p[2].Reps = 12;
-            //p[2].Weight = null;
-            //p[2].ExerciseName = "Military Pushups";
-            //p.Add(new PastReps());
-            //p[3].Date = new DateTime(2015, 8, 8);
-            //p[3].Id = 1;
-            //p[3].Reps = 10;
-            //p[3].Weight = null;
-            //p[3].ExerciseName = "Standarad Push Ups";
-            //p.Add(new PastReps());
-            //p[4].Date = new DateTime(2015, 8, 8);
-            //p[4].Id = 1;
-            //p[4].Reps = 10;
-            //p[4].Weight = null;
-            //p[4].ExerciseName = "Wide Fly Pull Ups";
-            //p.Add(new PastReps());
-            //p[5].Date = new DateTime(2015, 8, 8);
-            //p[5].Id = 1;
-            //p[5].Reps = 15;
-            //p[5].Weight = null;
-            //p[5].ExerciseName = "Military Pushups";
 
             Dictionary<DateTime, List<PastReps>> dict = new Dictionary<DateTime, List<PastReps>>();
             List<PastReps> tempPastReps = new List<PastReps>();
@@ -137,7 +85,6 @@ namespace MvcApplication.Controllers
                 tempPastReps.Add(item);
             }
 
-            var a = currentWorkoutDict.First(x => x.Key == Convert.ToInt32(id)); // Find the outcome of this. Is it the value or key/value. Delete afterwards
             string currExerciseName;
             currentWorkoutDict.TryGetValue(Convert.ToInt32(id), out currExerciseName);
             ViewBag.CurrentExerciseGroup = currExerciseName;
