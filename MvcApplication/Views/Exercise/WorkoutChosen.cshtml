@@ -27,36 +27,47 @@
             <h5>Previous attempts</h5>
         </hgroup>
 
-        <div class="table">
-            <table>
-                <tr>
-                    <th></th>
-                    @foreach (KeyValuePair<DateTime, List<MvcApplication.Models.Definitions.PastReps>> item in Model)
-                    {
-                        var value = item.Value;
-                      
-                        foreach (var rep in value)
-                        {
-                            <th>@Html.Encode(rep.ExerciseName)</th>
-                        }
-                        break;
-                    }
-                </tr>
-                
-                @foreach (KeyValuePair<DateTime, List<MvcApplication.Models.Definitions.PastReps>> item in Model)
-                {
-                    var key = item.Key;
-                    var value = item.Value;
-                    
+        <div>
+            <table class="table table-bordered table-hover">
+                <thead>
                     <tr>
-                        <td>@Html.Encode(value[0].Date.ToString("MM/dd/yyyy"))</td>    
-
-                        @foreach(var entry in value)
+                        <th></th>
+                        @foreach (KeyValuePair<DateTime, List<MvcApplication.Models.Definitions.PastReps>> item in Model)
                         {
-                            <td>@Html.Encode(entry.Reps) @Html.Encode(entry.Weight)</td>
+                            var value = item.Value;
+
+                            foreach (var rep in value)
+                            {
+                                <th>@Html.Encode(rep.ExerciseName)</th>
+                            }
+                            break;
                         }
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (KeyValuePair<DateTime, List<MvcApplication.Models.Definitions.PastReps>> item in Model)
+                    {
+                        var key = item.Key;
+                        var value = item.Value;
+
+                        <tr>
+                            <td>@Html.Encode(value[0].Date.ToString("MM/dd/yyyy"))</td>
+
+                            @foreach (var entry in value)
+                            {
+                                if(entry.Weight != null)
+                                {
+                                    <td>@Html.Encode(entry.Reps) reps @Html.Encode(entry.Weight) lbs</td>
+                                }
+                                else
+                                {
+                                    <td>  @Html.Encode(entry.Reps) reps </td>
+                                }
+                            }
+                        </tr>
+                    }
+                </tbody>
+               
             </table>
         </div>
     </div>
