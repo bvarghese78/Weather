@@ -31,10 +31,12 @@
 <p>Visibility: @ViewBag.Visibility</p>
 <p>Pressure: @ViewBag.Pressure</p>
 
-<section class="featured"
-    <div class="content-wrapper">
-        <h3>Weekly Weather</h3>
-        <br />
+<br/>
+
+<div class="col-md-12">
+    <h3>Weekly Weather</h3>
+    <br />
+    <div class="col-md-4">
         <h5>Today @ViewBag.Day0Time</h5>
         <p>Feels Like: @ViewBag.Day0ApparentTemperatureMax</p>
         <p>Max Temp: @ViewBag.Day0TemperatureMax</p>
@@ -51,8 +53,9 @@
         <p>Pressure: @ViewBag.Day0Pressure</p>
         <p>Sunrise: @ViewBag.Day0Sunrise</p>
         <p>Sunset: @ViewBag.Day0Sunset</p>
-        <br />
+    </div>
 
+    <div class="col-md-4">
         @{var DayOfWeek = DateTime.Now.AddDays(1).DayOfWeek; }
         <h5>@DayOfWeek @ViewBag.Day1Time</h5>
 
@@ -71,8 +74,9 @@
         <p>Pressure: @ViewBag.Day1Pressure</p>
         <p>Sunrise: @ViewBag.Day1Sunrise</p>
         <p>Sunset: @ViewBag.Day1Sunset</p>
-        <br />
-        
+    </div>
+    
+    <div class="col-md-4">
         @{var DayOfWeek1 = DateTime.Now.AddDays(2).DayOfWeek; }
         <h5>@DayOfWeek1 @ViewBag.Day2Time</h5>
 
@@ -92,6 +96,6 @@
         <p>Sunrise: @ViewBag.Day2Sunrise</p>
         <p>Sunset: @ViewBag.Day2Sunset</p>
     </div>
-</section>
+</div>
 
 

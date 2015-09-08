@@ -10,22 +10,22 @@
     </head>
     <body>
         <header>
-            <div class="content-wrapper">
-                <div class="float-left">
+            <div class="col-md-12">
+                <div class="col-md-6 pull-left">
                     <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
                 </div>
-                <div class="float-right">
+                <div class="col-md-6 pull-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>
                     <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Exercise", "Index", "Exercise")</li>
-                            <li>@Html.ActionLink("Weather", "Index", "Weather")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
+                        <div>
+                            <button type="button" class="col-md-2 btn btn-default">@Html.ActionLink("Home", "Index", "Home")</button>
+                            <button type="button" class="col-md-2 btn btn-default">@Html.ActionLink("About", "About", "Home")</button>
+                            <button type="button" class="col-md-2 btn btn-default"> @Html.ActionLink("Exercise", "Index", "Exercise")</button>
+                            <button type="button" class="col-md-2 btn btn-default">@Html.ActionLink("Weather", "Index", "Weather")</button>
+                            <button type="button" class="col-md-2 btn btn-default"> @Html.ActionLink("Contact", "Contact", "Home")</button>
+                        </div>
                     </nav>
                 </div>
             </div>
