@@ -32,14 +32,14 @@
         </header>
         <div id="body">
             @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
+            <section class="container-fluid">
                 @RenderBody()
             </section>
         </div>
         <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+            <div class="peanl panel-default">
+                <div class="panel-footer">
+                    <p>&copy; @DateTime.Now.Year - Benji-Jeen Application</p>
                 </div>
             </div>
         </footer>
