@@ -6,16 +6,24 @@
     <h1>@ViewBag.Title</h1>
     <h2>@ViewBag.Message</h2>
 </hgroup>
-<div>
-    @using (Html.BeginForm("WorkoutChosen", "Exercise", new { id = "" }))
-    {
-        <form action="/Exercise/WorkoutChosen" method="post">
-            <fieldset>
-                Choose Workout
-                @Html.DropDownList("id", (SelectList)null, new { onchange = "this.form.submit();" })
-            </fieldset>
-        </form>
-    }
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="container">
+            @using (Html.BeginForm("WorkoutChosen", "Exercise", new { id = "" }))
+            {
+                <form action="/Exercise/WorkoutChosen" method="post">
+                    <fieldset class="col-md-10">
+                        <div class="col-md-3">
+                            <p>Choose Workout</p>
+                        </div>
+                        <div class="col-md-offset-5">
+                            @Html.DropDownList("id", (SelectList)null, new { onchange = "this.form.submit();", @class = "form-control" })
+                        </div>
+                    </fieldset>
+                </form>
+            }
+        </div>
+    </div>
 </div>
 
 <br/>
