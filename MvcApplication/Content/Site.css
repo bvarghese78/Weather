@@ -6,12 +6,6 @@
 
 }
 
-#exercise-picker{
-    margin-top: 0px;
-    margin-left: 0px;
-    background-color: #ffd800;
-    border-color: #ddd;
-    border-width: 1px;
-    border-radius: 4px 0px 0px;
-    box-shadow: none;
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: blanchedalmond;
 }

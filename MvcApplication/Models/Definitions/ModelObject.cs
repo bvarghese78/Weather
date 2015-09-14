@@ -37,6 +37,8 @@ namespace MvcApplication.Models.Definitions
         public int? Weight;
         public DateTime Date;
         public string ExerciseName;
+        public string Notes;
+        public bool? Intensity;
 
         public PastReps() { }
         public PastReps(IDataReader reader)
@@ -46,6 +48,8 @@ namespace MvcApplication.Models.Definitions
             this.Weight = reader["Weight"] is DBNull ? null : (int?)Convert.ToInt32(reader["Weight"]);
             this.Date = Convert.ToDateTime(reader["Date"]);
             this.ExerciseName = Convert.ToString(reader["ExerciseName"]);
+            this.Notes = Convert.ToString(reader["Notes"]);
+            this.Intensity = reader["Intensity"] is DBNull ? null : (bool?)Convert.ToBoolean(reader["Intensity"]);
         }
     }
 

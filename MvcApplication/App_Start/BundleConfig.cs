@@ -39,7 +39,7 @@ namespace MvcApplication
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.css",
-                "~/Content/site.css"));
+                "~/Content/Site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/highchart").Include("~/scripts/highcharts-4.0.1/js/highcharts.js"));
         }

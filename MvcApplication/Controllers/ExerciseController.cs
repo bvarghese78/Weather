@@ -93,22 +93,50 @@ namespace MvcApplication.Controllers
             return View(dict);
         }
 
-        // Not complete. Sanity checks
         private void PopulateNewEntry(List<PastReps> ExerciseNames)
         {
-            if (ViewBag.exerciseName == null)
-                ViewBag.exerciseName = ExerciseNames[0].ExerciseName;
-            else
+            if (ExerciseNames.Count > 0)
             {
-                var currentName = ViewBag.exerciseName;
-                for(int i = 0; i < ExerciseNames.Count; i++)
+                DateTime lastDate = DateTime.MinValue;
+                List<SelectListItem> exercises = new List<SelectListItem>();
+                foreach (var item in ExerciseNames)
                 {
-                    if(ExerciseNames[i].ExerciseName== currentName)
+                    if (lastDate == DateTime.MinValue || lastDate == item.Date)
                     {
-                        ViewBag.exerciseName = ExerciseNames[i + 1].ExerciseName;
+                        exercises.Add(new SelectListItem { Text = item.ExerciseName, Value = Convert.ToString(item.Id) });
+                        lastDate = item.Date;
                     }
+                    else
+                        continue;
                 }
+
+                ViewBag.exerciseName = exercises;
+
+                LoadIntensityDropDown();
             }
+        }
+
+        private void LoadIntensityDropDown()
+        {
+            List<SelectListItem> intensity = new List<SelectListItem>();
+            SelectListItem intensityNull = new SelectListItem();
+            intensityNull.Text = "";
+            intensityNull.Value = "";
+
+            SelectListItem intensityTrue = new SelectListItem();
+            intensityTrue.Text = "True";
+            intensityTrue.Value = "True";
+
+            SelectListItem intensityFalse = new SelectListItem();
+            intensityFalse.Text = "False";
+            intensityFalse.Value = "False";
+
+
+            intensity.Add(intensityNull);
+            intensity.Add(intensityTrue);
+            intensity.Add(intensityFalse);
+
+            ViewBag.Intensity = intensity;
         }
     }
 }
