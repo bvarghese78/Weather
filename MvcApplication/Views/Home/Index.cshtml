@@ -25,6 +25,20 @@
                         <p>Different clocks go here. (Local Clock OKC)
                            Clocks for other cities around the world (New York, London, Dubai, Mumbai)
                         </p>
+                        <div class="col-md-2">
+                            <label>Oklahoma City, OK</label>
+                            <br/>
+                            <span id="localTime"></span>
+                            <br/>
+                            <span id="localDate"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <label>UTC</label>
+                            <br/>
+                            <span id="timeUTC" style="font-size:18px"></span>
+                            <br/>
+                            <span id="utcDate"></span>
+                        </div>
                     </div>
 
                     <div class="col-md-12">
@@ -39,5 +53,11 @@
             </div>
         </div>
     </div>
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="~/SignalR/hubs"></script>
+    <script src="~/Scripts/Custom/timer.js"></script>
 }
 
