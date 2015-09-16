@@ -18,45 +18,59 @@ namespace MvcApplication.Hubs
             {
                 while (true)
                 {
+                    // OKC
                     string timeNow = DateTime.Now.ToLongTimeString() + " CDT";
-                    string timeNowDate = calcDateTime(DateTime.Now);
+                    string timeNowDate = DateTime.Now.ToString("D");
+
+                    // UTC
                     string timeUtc = DateTime.UtcNow.ToLongTimeString() + " UTC";
-                    string timeUtcDate = calcDateTime(DateTime.UtcNow);
+                    string timeUtcDate = DateTime.UtcNow.ToString("D");
+
+                    // BOM
+                    DateTime BOM = FindTimeFromTimeZone("India Standard Time");
+                    string timeIST = BOM.ToLongTimeString() + " IST";
+                    string timeISTDate = BOM.ToString("D");
+
+                    // NYC
+                    DateTime NYC = FindTimeFromTimeZone("Eastern Standard Time");
+                    string timeEST = NYC.ToLongTimeString() + " EST";
+                    string timeESTDate = NYC.ToString("D");
+
+                    // LON
+                    DateTime LON = FindTimeFromTimeZone("GMT Standard Time");
+                    string timeGMT = LON.ToLongTimeString() + " GMT";
+                    string timeGMTDate = LON.ToString("D");
+
+                    // DXB
+                    DateTime DXB = FindTimeFromTimeZone("Arabian Standard Time");
+                    string timeAST = DXB.ToLongTimeString() + " AST";
+                    string timeASTDate = DXB.ToString("D");
+
                     //Sending the server time to all the connected clients on the client method SendServerTime()
                     Clients.All.SendServerTime(timeNow);
                     Clients.All.SendServerTimeUtc(timeUtc);
+                    Clients.All.SendServerTimeIST(timeIST);
+                    Clients.All.SendServerTimeEST(timeEST);
+                    Clients.All.SendServerTimeGMT(timeGMT);
+                    Clients.All.SendServerTimeAST(timeAST);
 
                     Clients.All.SendLocalDate(timeNowDate);
                     Clients.All.SendUtcDate(timeUtcDate);
+                    Clients.All.SendISTDate(timeISTDate);
+                    Clients.All.SendESTDate(timeESTDate);
+                    Clients.All.SendGMTDate(timeGMTDate);
+                    Clients.All.SendASTDate(timeASTDate);
                     
                     await Task.Delay(1000);
                 }
             }, TaskCreationOptions.LongRunning);
         }
 
-        private string calcDateTime(DateTime date)
+        private static DateTime FindTimeFromTimeZone(string timeZoneName)
         {
-            string ret;
-            string time = date.ToLongTimeString();
-            string tempDate = date.ToString("D");
-            string timeZone = TimeZoneInfo.Local.DisplayName;
-
-            TimeSpan v = new TimeSpan(5, 30, 0);
-            DateTime k = DateTime.UtcNow;
-            DateTime d = new DateTime(k.Year, k.Month, k.Day, k.Hour, k.Minute, k.Second);
-
-            var temp = new DateTime(2015, 9, 15);
-
-
-            DateTimeOffset d1 = new DateTimeOffset(d, v);
-
-
-            var ist = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
-            var newDate = TimeZoneInfo.ConvertTime(d1, ist);
-            
-            ret = tempDate;
-
-            return ret;
+            var ist = TimeZoneInfo.FindSystemTimeZoneById(timeZoneName);
+            var newDate = TimeZoneInfo.ConvertTime(DateTime.UtcNow, ist);
+            return newDate;
         }
     }
 }
