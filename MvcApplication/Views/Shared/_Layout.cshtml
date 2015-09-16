@@ -7,44 +7,43 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/highchart")
     </head>
     <body>
         <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Exercise", "Index", "Exercise")</li>
-                            <li>@Html.ActionLink("Weather", "Index", "Weather")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
+            <div class="col-md-12">
+                <nav class="navbar navbar-default">
+                    <div class="col-md-7 pull-left">
+                        <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                    </div>
+                    <div class="col-md-5 pull-right">
+                        <div class="container-fluid">
+                            @Html.Partial("_LoginPartial")
+                            @Html.ActionLink("Home", "Index", "Home", null, new { @class="btn btn-default navbar-btn"})
+                            @Html.ActionLink("About", "About", "Home", null, new { @class = "btn btn-default navbar-btn" })
+                            @Html.ActionLink("Exercise", "Index", "Exercise", null, new { @class = "btn btn-default navbar-btn" })
+                            @Html.ActionLink("Weather", "Index", "Weather", null, new { @class = "btn btn-default navbar-btn" })
+                            @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "btn btn-default navbar-btn" })    
+                        </div>
+                    </div>
+                </nav>
             </div>
         </header>
         <div id="body">
             @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
+            <section class="container-fluid">
                 @RenderBody()
             </section>
         </div>
         <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+            <div class="peanl panel-default">
+                <div class="panel-footer">
+                    <p>&copy; @DateTime.Now.Year - Benji-Jeen Application</p>
                 </div>
             </div>
         </footer>
-
-        @Scripts.Render("~/bundles/jquery")
+        
         @RenderSection("scripts", required: false)
     </body>
 </html>
