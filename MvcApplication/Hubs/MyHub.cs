@@ -33,12 +33,12 @@ namespace MvcApplication.Hubs
 
                     // NYC
                     DateTime NYC = FindTimeFromTimeZone("Eastern Standard Time");
-                    string timeEST = NYC.ToLongTimeString() + " EST";
+                    string timeEST = NYC.ToLongTimeString() + " EDT";
                     string timeESTDate = NYC.ToString("D");
 
                     // LON
                     DateTime LON = FindTimeFromTimeZone("GMT Standard Time");
-                    string timeGMT = LON.ToLongTimeString() + " GMT";
+                    string timeGMT = LON.ToLongTimeString() + " BST";
                     string timeGMTDate = LON.ToString("D");
 
                     // DXB
