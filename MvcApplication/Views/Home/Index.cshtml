@@ -1,4 +1,5 @@
-﻿@{
+﻿<link href="@Url.Content("~/Content/weathericons/weather-icons.min.css")" rel="stylesheet" type="text/css" />
+@{
     ViewBag.Title = "Home Page";
 }
 @section featured {
@@ -12,8 +13,20 @@
                 <div class="panel-heading">Today's Info @DateTime.Now.ToString("D")</div>
                 <div class="panel-body">
                     <div class="col-md-12">
-                        <div class="col-md-6">
-                            <p>Today's Weather info goes here</p>
+                        <div class="col-md-6" style="border-right:solid 2px black">
+                            <p>Weather in Oklahoma City, OK</p>
+                            <div class="col-md-4">
+                                <p>ICON GOES HERE</p>
+                                <i class="wi wi-day-sunny"></i>
+                                <p>Current Weather: @ViewBag.Temp</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>Hi: @ViewBag.Max</p>
+                                <p>Low: @ViewBag.Min</p>
+                                 @ViewBag.Summary
+                                <p>Sunrise: @ViewBag.Sunrise</p>
+                                <p>Sunset: @ViewBag.Sunset</p>
+                            </div>
                         </div>
 
                         <div class="col-md-6">
@@ -87,4 +100,5 @@
     <script src="~/SignalR/hubs"></script>
     <script src="~/Scripts/Custom/timer.js"></script>
 }
+
 

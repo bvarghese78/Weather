@@ -8,6 +8,8 @@ using DotNet.Highcharts;
 using DotNet.Highcharts.Options;
 using DotNet.Highcharts.Enums;
 using DotNet.Highcharts.Helpers;
+using ForecastIO;
+using GoogleMaps.LocationServices;
 
 namespace MvcApplication.Controllers
 {
@@ -15,6 +17,15 @@ namespace MvcApplication.Controllers
     {
         public ActionResult Index()
         {
+
+            double lat;
+            double lon;
+            string address = "3941 NW 122nd Street, Oklahoma City, OK";
+            GetGeocode(address, out lat, out lon);
+            WeatherModel weather = GetLocalForecast((float)lat, (float)lon);
+
+            BuildWeatherDisplay(weather);
+
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
@@ -98,6 +109,33 @@ namespace MvcApplication.Controllers
                 });
 
             return View(chart);
+        }
+
+        public WeatherModel GetLocalForecast(float lat, float lon)
+        {
+            var request = new ForecastIORequest("d1d02d9b39d4125af3216ea665368a5c", lat, lon, Unit.us);
+            var response = request.Get();
+
+            WeatherModel weather = new WeatherModel(response);
+            return weather;
+        }
+
+        public void GetGeocode(string address, out double lat, out double lon)
+        {
+            var googleLocation = new GoogleLocationService();
+            var latlon = googleLocation.GetLatLongFromAddress(address);
+            lat = latlon.Latitude;
+            lon = latlon.Longitude;
+        }
+
+        private void BuildWeatherDisplay(WeatherModel weather)
+        {
+            ViewBag.Temp = Convert.ToInt32(weather.currentWeather.temperature) + "° F";
+            ViewBag.Max = Convert.ToInt32(weather.day0.apparentTemperatureMax) + "° F";
+            ViewBag.Min = Convert.ToInt32(weather.day0.apparentTemperatureMin) + "° F";
+            ViewBag.Summary = weather.currentWeather.summary;
+            ViewBag.Sunrise = weather.day0.SunriseTime.ToLongTimeString();
+            ViewBag.Sunset = weather.day0.SunsetTime.ToLongTimeString();
         }
     }
 }
