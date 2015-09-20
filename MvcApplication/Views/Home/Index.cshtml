@@ -13,17 +13,17 @@
                 <div class="panel-heading">Today's Info @DateTime.Now.ToString("D")</div>
                 <div class="panel-body">
                     <div class="col-md-12">
-                        <div class="col-md-6" style="border-right:solid 2px black">
+                        @*<hr style="transform:rotate(90deg); -o-transform:rotate(90deg); -moz-transform:rotate(90deg); -webkit-transform:rotate(90deg);" />*@
+                        <div class="col-md-6">
                             <p>Weather in Oklahoma City, OK</p>
-                            <div class="col-md-4">
-                                <p>ICON GOES HERE</p>
-                                <i class="wi wi-day-sunny"></i>
-                                <p>Current Weather: @ViewBag.Temp</p>
+                            <div class="col-md-6">
+                                <i class="@ViewBag.ClassName" style="font-size:80px; float:left; margin-right:15px; margin-bottom:15px; margin-top:15px;"></i>
+                                <p style="font-size:35px; margin-top:15px;">@ViewBag.Temp</p>
+                                <p>@ViewBag.Summary</p>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <p>Hi: @ViewBag.Max</p>
                                 <p>Low: @ViewBag.Min</p>
-                                 @ViewBag.Summary
                                 <p>Sunrise: @ViewBag.Sunrise</p>
                                 <p>Sunset: @ViewBag.Sunset</p>
                             </div>
@@ -36,7 +36,7 @@
                     <div class="clearfix"></div>
                     <hr />
                     <div class="col-md-12">
-                        <div class="col-md-2" style="background-color:#c9e9b0">
+                        @*<div class="col-md-2" style="background-color:#c9e9b0">
                             <h3><img src="~/Images/us.png" width="32" height="21" title="Flag for United States" /> Oklahoma City, OK</h3>
                             <br/>
                             <span id="localTime" style="font-size:18px"></span>
@@ -77,7 +77,7 @@
                             <span id="timeIST" style="font-size:18px"></span>
                             <br />
                             <span id="istDate"></span>
-                        </div>
+                        </div>*@
                     </div>
                     <div class="clearfix"></div>
                     <hr />

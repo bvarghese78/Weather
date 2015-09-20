@@ -18,13 +18,13 @@ namespace MvcApplication.Controllers
         public ActionResult Index()
         {
 
-            double lat;
-            double lon;
-            string address = "3941 NW 122nd Street, Oklahoma City, OK";
-            GetGeocode(address, out lat, out lon);
-            WeatherModel weather = GetLocalForecast((float)lat, (float)lon);
+            //double lat;
+            //double lon;
+            //string address = "3941 NW 122nd Street, Oklahoma City, OK";
+            //GetGeocode(address, out lat, out lon);
+            //WeatherModel weather = GetLocalForecast((float)lat, (float)lon);
 
-            BuildWeatherDisplay(weather);
+            //BuildWeatherDisplay(weather);
 
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
@@ -128,14 +128,67 @@ namespace MvcApplication.Controllers
             lon = latlon.Longitude;
         }
 
-        private void BuildWeatherDisplay(WeatherModel weather)
+        public void BuildWeatherDisplay(WeatherModel weather)
         {
-            ViewBag.Temp = Convert.ToInt32(weather.currentWeather.temperature) + "° F";
-            ViewBag.Max = Convert.ToInt32(weather.day0.apparentTemperatureMax) + "° F";
-            ViewBag.Min = Convert.ToInt32(weather.day0.apparentTemperatureMin) + "° F";
+            ViewBag.Temp = Convert.ToInt32(weather.currentWeather.temperature) + "°F / " + ConvertToCelsius(weather.currentWeather.temperature) + "°C";
+            ViewBag.Max = Convert.ToInt32(weather.day0.apparentTemperatureMax) + "°F / " + ConvertToCelsius(weather.day0.apparentTemperatureMax) + "°C at " + Convert.ToDateTime(weather.day0.temperatureMaxTime).ToLongTimeString();
+            ViewBag.Min = Convert.ToInt32(weather.day0.apparentTemperatureMin) + "°F / " + ConvertToCelsius(weather.day0.apparentTemperatureMin) + "°C at " + Convert.ToDateTime(weather.day0.temperatureMinTime).ToLongTimeString();
             ViewBag.Summary = weather.currentWeather.summary;
             ViewBag.Sunrise = weather.day0.SunriseTime.ToLongTimeString();
             ViewBag.Sunset = weather.day0.SunsetTime.ToLongTimeString();
+            ViewBag.ClassName = iconClassName(weather.currentWeather.icon);
+        }
+
+        private int ConvertToCelsius(float farenheit)
+        {
+            double celsius = (farenheit - 32) / 1.8;
+            return Convert.ToInt32(celsius);
+        }
+
+        private string iconClassName(string iconName)
+        {
+            string className = "";
+            switch (iconName)
+            {
+                case "clear-day":
+                    className = "wi wi-day-sunny";
+                    break;
+                case "clear-night":
+                    className = "wi wi-night-clear";
+                    break;
+                case "rain":
+                    className = "wi wi-rain";
+                    break;
+                case "snow":
+                    className = "wi wi-snow";
+                    break;
+                case "sleet":
+                    className = "wi wi-sleet";
+                    break;
+                case "wind":
+                    className = "wi wi-strong-wind";
+                    break;
+                case "fog":
+                    className = "wi wi-fog";
+                    break;
+                case "partly-cloudy-day":
+                    className = "wi wi-day-cloudy";
+                    break;
+                case "partly-cloudy-night":
+                    className = "wi wi-night-cloudy";
+                    break;
+                case "hail":
+                    className = "wi wi-hail";
+                    break;
+                case "thunderstorm":
+                    className = "wi wi-thunderstorm";
+                    break;
+                case "tornado":
+                    className = "wi wi-tornado";
+                    break;
+            }
+
+            return className;
         }
     }
 }

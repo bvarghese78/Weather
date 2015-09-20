@@ -59,4 +59,8 @@
     myHub.client.SendISTDate = function (serverTime) {
         $('#istDate').text(serverTime);
     };
+
+    myHub.client.SendWeather = function (weather) {
+
+    };
 }());

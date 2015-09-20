@@ -64,7 +64,7 @@ namespace MvcApplication.Controllers
             ViewBag.CloudCover = weather.currentWeather.cloudCover + "%";
             ViewBag.DewPoint = Convert.ToInt32(weather.currentWeather.dewPoint) + "° F";
             ViewBag.Humidity = weather.currentWeather.humidity + "%";
-            //ViewBag.Icon = weather.currentWeather.icon;
+            ViewBag.Icon = weather.currentWeather.icon;
             //ViewBag.NearestStormBearing = weather.currentWeather.nearestStormBearing;
             //ViewBag.NearestStormDistance = weather.currentWeather.nearestStormDistance + " mi";
             //ViewBag.Ozone = weather.currentWeather.ozone;

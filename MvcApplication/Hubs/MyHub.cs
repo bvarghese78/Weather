@@ -5,6 +5,8 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
 using System.Globalization;
+using MvcApplication.Controllers;
+using MvcApplication.Models;
 
 namespace MvcApplication.Hubs
 {
@@ -63,6 +65,25 @@ namespace MvcApplication.Hubs
                     
                     await Task.Delay(1000);
                 }
+            }, TaskCreationOptions.LongRunning);
+
+            var taskWeather = Task.Factory.StartNew(async ()=>
+            {
+                HomeController hc = new HomeController();
+                double lat;
+                double lon;
+                string address = "3941 NW 122nd Street, Oklahoma City, OK";
+                hc.GetGeocode(address, out lat, out lon);
+
+                while (true)
+                {
+                    WeatherModel weather = hc.GetLocalForecast((float)lat, (float)lon);
+                    hc.BuildWeatherDisplay(weather);
+
+                    Clients.All.SendWeather(weather);
+                    await Task.Delay(60000);
+                }
+                
             }, TaskCreationOptions.LongRunning);
         }
 
