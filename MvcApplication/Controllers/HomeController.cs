@@ -18,13 +18,13 @@ namespace MvcApplication.Controllers
         public ActionResult Index()
         {
 
-            //double lat;
-            //double lon;
-            //string address = "3941 NW 122nd Street, Oklahoma City, OK";
-            //GetGeocode(address, out lat, out lon);
-            //WeatherModel weather = GetLocalForecast((float)lat, (float)lon);
+            double lat;
+            double lon;
+            string address = "3941 NW 122nd Street, Oklahoma City, OK";
+            GetGeocode(address, out lat, out lon);
+            WeatherModel weather = GetLocalForecast((float)lat, (float)lon);
 
-            //BuildWeatherDisplay(weather);
+            BuildWeatherDisplay(weather);
 
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
@@ -185,6 +185,9 @@ namespace MvcApplication.Controllers
                     break;
                 case "tornado":
                     className = "wi wi-tornado";
+                    break;
+                case "cloudy":
+                    className = "wi wi-cloudy";
                     break;
             }
 

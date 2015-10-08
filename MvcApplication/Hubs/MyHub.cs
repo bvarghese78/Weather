@@ -67,24 +67,24 @@ namespace MvcApplication.Hubs
                 }
             }, TaskCreationOptions.LongRunning);
 
-            var taskWeather = Task.Factory.StartNew(async ()=>
-            {
-                HomeController hc = new HomeController();
-                double lat;
-                double lon;
-                string address = "3941 NW 122nd Street, Oklahoma City, OK";
-                hc.GetGeocode(address, out lat, out lon);
+            //var taskWeather = Task.Factory.StartNew(async ()=>
+            //{
+            //    HomeController hc = new HomeController();
+            //    double lat;
+            //    double lon;
+            //    string address = "3941 NW 122nd Street, Oklahoma City, OK";
+            //    hc.GetGeocode(address, out lat, out lon);
 
-                while (true)
-                {
-                    WeatherModel weather = hc.GetLocalForecast((float)lat, (float)lon);
-                    hc.BuildWeatherDisplay(weather);
+            //    while (true)
+            //    {
+            //        WeatherModel weather = hc.GetLocalForecast((float)lat, (float)lon);
+            //        hc.BuildWeatherDisplay(weather);
 
-                    Clients.All.SendWeather(weather);
-                    await Task.Delay(60000);
-                }
+            //        Clients.All.SendWeather(weather);
+            //        await Task.Delay(60000);
+            //    }
                 
-            }, TaskCreationOptions.LongRunning);
+            //}, TaskCreationOptions.LongRunning);
         }
 
         private static DateTime FindTimeFromTimeZone(string timeZoneName)
