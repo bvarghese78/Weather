@@ -1,45 +1,104 @@
-﻿@{
+﻿<link href="@Url.Content("~/Content/weathericons/weather-icons.min.css")" rel="stylesheet" type="text/css" />
+@{
     ViewBag.Title = "Home Page";
 }
 @section featured {
-    <section class="featured">
+    <div class="container-fluid">
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
                 <h2>@ViewBag.Message</h2>
             </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Today's Info @DateTime.Now.ToString("D")</div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        @*<hr style="transform:rotate(90deg); -o-transform:rotate(90deg); -moz-transform:rotate(90deg); -webkit-transform:rotate(90deg);" />*@
+                        <div class="col-md-6">
+                            <p>Weather in Oklahoma City, OK</p>
+                            <div class="col-md-6">
+                                <i class="@ViewBag.ClassName" style="font-size:80px; float:left; margin-right:15px; margin-bottom:15px; margin-top:15px;"></i>
+                                <p style="font-size:35px; margin-top:15px;">@ViewBag.Temp</p>
+                                <p>@ViewBag.Summary</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Hi: @ViewBag.Max</p>
+                                <p>Low: @ViewBag.Min</p>
+                                <p>Sunrise: @ViewBag.Sunrise</p>
+                                <p>Sunset: @ViewBag.Sunset</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p>Here goes some information about today. (example: today is president's day. 45th day of the year. 7th week of the year.)</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr />
+                    <div class="col-md-12">
+                        <div class="col-md-2" style="background-color:#c9e9b0">
+                            <h3><img src="~/Images/us.png" width="32" height="21" title="Flag for United States" /> Oklahoma City, OK</h3>
+                            <br/>
+                            <span id="localTime" style="font-size:18px"></span>
+                            <br/>
+                            <span id="localDate"></span>
+                        </div>
+                        <div class="col-md-2" style="background-color:#64beed">
+                            <h3><img src="~/Images/us.png" width="32" height="21" title="Flag for United States" /> New York, NY</h3>
+                            <br />
+                            <span id="timeEST" style="font-size:18px"></span>
+                            <br />
+                            <span id="estDate"></span>
+                        </div>
+                        <div class="col-md-2" style="background-color:#c9e9b0">
+                            <h3><img src="~/Images/gb.png" width="32" height="21" title="Flag for United Kingdom" /> UTC</h3>
+                            <br />
+                            <span id="timeUTC" style="font-size:18px"></span>
+                            <br />
+                            <span id="utcDate"></span>
+                        </div>
+                        <div class="col-md-2" style="background-color:#64beed">     
+                            <h3><img src="~/Images/gb.png" width="32" height="21" title="Flag for United Kingdom" /> London, UK</h3>
+                            <br />
+                            <span id="timeGMT" style="font-size:18px"></span>
+                            <br />
+                            <span id="gmtDate"></span>
+                        </div>
+                        <div class="col-md-2" style="background-color:#c9e9b0">
+                            <h3><img src="~/Images/uae.png" width="32" height="21" title="Flag for United Arab Emirates" /> Dubai, UAE</h3>
+                            <br />
+                            <span id="timeAST" style="font-size:18px"></span>
+                            <br />
+                            <span id="astDate"></span>
+                        </div>
+                        <div class="col-md-2" style="background-color:#64beed">
+                            <h3><img src="~/Images/ind.png" width="32" height="21" title="Flag for India" /> Mumbai, India</h3>
+                            <br />
+                            <span id="timeIST" style="font-size:18px"></span>
+                            <br />
+                            <span id="istDate"></span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr />
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <p>Here goes today's exercise information.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Here goes today's caloric intakes. Body Weight.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 }
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="~/SignalR/hubs"></script>
+    <script src="~/Scripts/Custom/timer.js"></script>
+}
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+

@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Workouts";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="container">
+            @using (Html.BeginForm("WorkoutChosen", "Exercise", new { id = "" }))
+            {
+                <form action="/Exercise/WorkoutChosen" method="post">
+                    <fieldset class="col-md-10">
+                        <div class="col-md-3">
+                            <p>Choose Workout</p>
+                        </div>
+                        <div class="col-md-offset-5">
+                            @Html.DropDownList("id", (SelectList)null, new { onchange = "this.form.submit();", @class = "form-control" })
+                        </div>
+                    </fieldset>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+
+<br/>
+
+<section>
+    <div class="content-wrapper">
+        <hgroup class="title">
+            <h3 style:color="red">@ViewBag.CurrentExerciseGroup</h3>
+            <h5>Previous attempts</h5>
+        </hgroup>
+
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        @foreach (KeyValuePair<DateTime, List<MvcApplication.Models.Definitions.PastReps>> item in Model)
+                        {
+                            var value = item.Value;
+
+                            foreach (var rep in value)
+                            {
+                                <th>@Html.Encode(rep.ExerciseName)</th>
+                            }
+                            break;
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (KeyValuePair<DateTime, List<MvcApplication.Models.Definitions.PastReps>> item in Model)
+                    {
+                        var key = item.Key;
+                        var value = item.Value;
+
+                        <tr>
+                            <td>@Html.Encode(value[0].Date.ToString("MM/dd/yyyy"))</td>
+
+                            @foreach (var entry in value)
+                            {
+                                if (entry.Weight != null)
+                                {
+                                    if (entry.Intensity == true)
+                                    {
+                                        <td>@Html.Encode(entry.Reps) reps @Html.Encode(entry.Weight) lbs   @char.ConvertFromUtf32(8593)</td>
+                                    }
+                                    else if (entry.Intensity == false)
+                                    {
+                                        <td>@Html.Encode(entry.Reps) reps @Html.Encode(entry.Weight) lbs   @char.ConvertFromUtf32(8595)</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@Html.Encode(entry.Reps) reps @Html.Encode(entry.Weight) lbs </td>
+                                    }
+
+                                }
+                                else
+                                {
+                                    if (entry.Intensity == true)
+                                    {
+                                        <td>  @Html.Encode(entry.Reps) reps  @char.ConvertFromUtf32(8593)</td>
+                                    }
+                                    else if (entry.Intensity == false)
+                                    {
+                                        <td>  @Html.Encode(entry.Reps) reps  @char.ConvertFromUtf32(8595)</td>
+                                    }
+                                    else
+                                    {
+                                        <td>  @Html.Encode(entry.Reps) reps </td>
+                                    }
+                                }
+                            }
+                        </tr>
+                    }
+                </tbody>
+               
+            </table>
+        </div>
+    </div>
+</section>
+
+<br/>
+
+<section>
+    <div class="container">
+        <h2>New @ViewBag.CurrentExerciseType Entries</h2>
+
+        <br />
+        @using (@Html.BeginForm("Index", "Exercise", FormMethod.Post))
+        {
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <label>Exercise Name</label>
+                    @*@Html.TextBox("exerciseName", null, new { @class="form-control"})*@
+                    @Html.DropDownList("exerciseName", ViewBag.exerciseName as List<SelectListItem>, new { @class="form-control" })
+                </div>
+                <div class="col-md-4">
+                    <label>Reps</label>
+                    @Html.TextBox("reps", null, new { @class = "form-control" })
+                </div>
+                <div class="col-md-4">
+                    <label>Weight</label>
+                    @Html.TextBox("weight", null, new { @class = "form-control" })
+                </div>
+            </div>
+           
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <label>Intensity</label>
+    
+                    @*@Html.TextBox("intensity")*@
+                    @Html.DropDownList("Intensity", ViewBag.Intensity as List<SelectListItem>, new { @class = "form-control" })
+                </div>
+                <div class="col-md-4">
+                    <label>Date</label>
+
+                    @Html.TextBox("date", @DateTime.Now, new { @class = "form-control datepicker" })
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-default">Next</button>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+    
