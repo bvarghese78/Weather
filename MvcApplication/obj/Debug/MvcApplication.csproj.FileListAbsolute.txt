@@ -94,3 +94,4 @@ C:\Users\BenjiJeen\Documents\GitHub\Weather\MvcApplication\bin\zh-Hans\System.Sp
 C:\Users\BenjiJeen\Documents\GitHub\Weather\MvcApplication\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\BenjiJeen\Documents\GitHub\Weather\MvcApplication\obj\Debug\MvcApplication.dll
 C:\Users\BenjiJeen\Documents\GitHub\Weather\MvcApplication\obj\Debug\MvcApplication.pdb
+C:\Users\BenjiJeen\Documents\GitHub\Weather\MvcApplication\obj\Debug\MvcApplication.csprojResolveAssemblyReference.cache

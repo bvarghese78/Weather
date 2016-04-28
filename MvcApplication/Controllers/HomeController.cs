@@ -120,6 +120,12 @@ namespace MvcApplication.Controllers
             return weather;
         }
 
+        /// <summary>
+        /// Finds Latitude and Longitude of a given address
+        /// </summary>
+        /// <param name="address">Address to geocode</param>
+        /// <param name="lat">Latitude value to return</param>
+        /// <param name="lon">Longitude value to return</param>
         public void GetGeocode(string address, out double lat, out double lon)
         {
             var googleLocation = new GoogleLocationService();

@@ -21,8 +21,9 @@ namespace MvcApplication.Hubs
                 while (true)
                 {
                     // OKC
-                    string timeNow = DateTime.Now.ToLongTimeString() + " CDT";
-                    string timeNowDate = DateTime.Now.ToString("D");
+                    DateTime OKC = FindTimeFromTimeZone("Central Standard Time");
+                    string timeOKC = OKC.ToLongTimeString() + " CDT";
+                    string timeOKCDate = OKC.ToString("D");
 
                     // UTC
                     string timeUtc = DateTime.UtcNow.ToLongTimeString() + " UTC";
@@ -49,14 +50,14 @@ namespace MvcApplication.Hubs
                     string timeASTDate = DXB.ToString("D");
 
                     //Sending the server time to all the connected clients on the client method SendServerTime()
-                    Clients.All.SendServerTime(timeNow);
+                    Clients.All.SendServerTime(timeOKC);
                     Clients.All.SendServerTimeUtc(timeUtc);
                     Clients.All.SendServerTimeIST(timeIST);
                     Clients.All.SendServerTimeEST(timeEST);
                     Clients.All.SendServerTimeGMT(timeGMT);
                     Clients.All.SendServerTimeAST(timeAST);
 
-                    Clients.All.SendLocalDate(timeNowDate);
+                    Clients.All.SendLocalDate(timeOKCDate);
                     Clients.All.SendUtcDate(timeUtcDate);
                     Clients.All.SendISTDate(timeISTDate);
                     Clients.All.SendESTDate(timeESTDate);
